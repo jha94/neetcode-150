@@ -1,3 +1,4 @@
+// Topic :- Array, string, hashing
 const productExceptSelf = (nums) => {
   const result = [];
   let prefix = 1;

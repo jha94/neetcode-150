@@ -1,3 +1,4 @@
+// Topic :- Array, string, hashing
 const longestConsecutive = (nums) => {
   const set = new Set(nums);
   let longest = 0;
