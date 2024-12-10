@@ -102,8 +102,7 @@ BST.prototype.depth = function (root) {
   while (current?.length) {
     const node = current.shift();
     if (node) {
-      current.push(node.left);
-      current.push(node.right);
+      current.push(node.left, node.right);
       depth++;
     }
   }
@@ -121,40 +120,40 @@ BST.prototype.isSameTree = function (t1, t2) {
   return false;
 };
 
-// BST.prototype.levelOrderTraversal = function (root) {
-//   let res = [];
-//   function traverse(node, level) {
-//     if (!node) return false;
-//     if (res.length === level) {
-//       res.push([]);
-//     }
-//     res[level].push(node.value);
-//     traverse(node.left, level + 1);
-//     traverse(node.right, level + 1);
-//   }
-//   traverse(root, 0);
-//   return res;
-// };
+BST.prototype.levelOrderTraversal = function (root) {
+  let res = [];
+  function dfs(node, level) {
+    if (!node) return;
+    if (res.length === level) {
+      res.push([]);
+    }
+    res[level].push(node.value);
+    dfs(node.left, level + 1);
+    dfs(node.right, level + 1);
+  }
+  dfs(root, 0);
+  return res;
+};
 
 const bst = new BST();
 bst.insert(2);
 bst.insert(1);
 bst.insert(3);
 bst.insert(5);
-// console.log(bst.levelOrderTraversal(bst.root));
+console.log(bst.levelOrderTraversal(bst.root));
 
-const bst2 = new BST();
-bst2.insert(2);
-bst2.insert(1);
-bst2.insert(3);
-bst2.insert(5);
-console.log(bst.isSameTree(bst.root, bst2.root));
+// const bst2 = new BST();
+// bst2.insert(2);
+// bst2.insert(1);
+// bst2.insert(3);
+// bst2.insert(5);
+// console.log(bst.isSameTree(bst.root, bst2.root));
 
 // bst.inorder(bst.root);
 // const root = bst.invert(bst.root);
 // bst.inorder(root);
 // bst.levelOrderTraversal(bst.root);
-console.log(bst.depth(bst.root));
+// console.log(bst.depth(bst.root));
 // bst.preorder(bst.root);
 // bst.postorder(bst.root);
 // console.log(bst.isSameTree(bst.root, bst2.root));
